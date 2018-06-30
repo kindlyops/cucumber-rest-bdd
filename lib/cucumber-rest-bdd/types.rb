@@ -1,12 +1,14 @@
 require 'active_support/inflector'
 
-CAPTURE_INT = Transform(/^(?:zero|one|two|three|four|five|six|seven|eight|nine|ten)$/) do |v|
-    %w(zero one two three four five six seven eight nine ten).index(v)
-end
+#FEWER_MORE_THAN = Transform(/^(?:(?:fewer|less|more) than|at (?:least|most))$/) do |v|
+#    to_compare(v)
+#end
 
-FEWER_MORE_THAN = Transform(/^(?:(?:fewer|less|more) than|at (?:least|most))$/) do |v|
-    to_compare(v)
-end
+ParameterType(
+  name: 'comparator',
+  regexp: /(?:(?:fewer|less|more) than|at (?:least|most))/,
+  transformer: -> (v) { Comparator.new(to_compare(v)) }
+)
 
 HAVE_SYNONYM = %{(?:has|have|having|contain|contains|containing|with)}
 

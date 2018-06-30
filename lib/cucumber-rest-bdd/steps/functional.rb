@@ -2,6 +2,8 @@ require 'cucumber-api/response'
 require 'cucumber-api/steps'
 require 'cucumber-rest-bdd/types'
 
+FEWER_MORE_THAN = '(?:(?:fewer|less|more) than|at (?:least|most))'
+
 Then(/^the response (?:should have|has a|has the) header "([^"]*)" with (?:a |the )?value "([^"]*)"$/) do |header, value|
     p_value = resolve(value)
     p_header = header.parameterize
